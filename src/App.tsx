@@ -1,15 +1,24 @@
-import Header from "./components/Header";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import { RootLayout } from "./layouts/RootLayout";
+import Foods from "./pages/Foods";
 import Home from "./pages/Home";
+import { foodsLoader } from "./loaders";
 
 function App() {
-  return (
-    <div>
-      <Header />
-      <main className="lg:w-9/12 md:w-5/6 mx-auto px-4 lg:px-0 py-10">
-        <Home />
-      </main>
-    </div>
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<RootLayout />}>
+        <Route index element={<Home />} />
+        <Route path="foods" element={<Foods />} loader={foodsLoader} />
+      </Route>
+    )
   );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
