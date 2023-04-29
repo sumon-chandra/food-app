@@ -12,3 +12,16 @@ export const foodsLoader = async () => {
   const res = await fetch(url, options);
   return res.json();
 };
+
+// !! Food Details Loader
+interface ParamsTypes {
+  params: {
+    id?: string;
+  };
+}
+export const foodDetailsLoader = async ({ params }: ParamsTypes) => {
+  const { id } = params;
+  const url = `https://api.spoonacular.com/recipes/${id}/information`;
+  const res = await fetch(url, options);
+  return res.json();
+};

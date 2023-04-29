@@ -7,7 +7,8 @@ import {
 import { RootLayout } from "./layouts/RootLayout";
 import Foods from "./pages/Foods";
 import Home from "./pages/Home";
-import { foodsLoader } from "./loaders";
+import { foodDetailsLoader, foodsLoader } from "./loaders";
+import FoodDetails from "./pages/FoodDetails";
 
 function App() {
   const router = createBrowserRouter(
@@ -15,6 +16,11 @@ function App() {
       <Route path="/" element={<RootLayout />}>
         <Route index element={<Home />} />
         <Route path="foods" element={<Foods />} loader={foodsLoader} />
+        <Route
+          path="foods/:id"
+          element={<FoodDetails />}
+          loader={foodDetailsLoader}
+        />
       </Route>
     )
   );
